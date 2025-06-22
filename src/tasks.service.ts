@@ -2,10 +2,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import * as admin from 'firebase-admin';
 
-// ¡IMPORTANTE! Pega aquí el contenido de tu archivo .json de credenciales
-// Más adelante lo haremos de forma segura con variables de entorno en Render.
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const serviceAccount = require('../mi-dinero-58798-firebase-adminsdk-fbsvc-56a8a8358b.json');
+let serviceAccount;
+// SI la variable de entorno existe...
+if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+} else {
+  // SI NO, intenta cargar el archivo local (esta es la línea 8 que falla)
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  serviceAccount = require('../mi-dinero-58798-firebase-adminsdk-fbsvc-56a8a8358b.json');
+}
 
 @Injectable()
 export class TasksService {
