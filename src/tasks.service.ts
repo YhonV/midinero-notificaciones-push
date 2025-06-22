@@ -25,7 +25,7 @@ export class TasksService {
     }
   }
 
-  @Cron('0 19 * * *', { timeZone: 'America/Santiago' }) // Todos los días a las 19:00
+  @Cron('10 20 * * *', { timeZone: 'America/Santiago' }) // Todos los días a las 19:00
   async handleCron() {
     this.logger.debug('Ejecutando recordatorio diario...');
 
