@@ -25,7 +25,7 @@ export class TasksService {
     }
   }
 
-  @Cron('10 20 * * *', { timeZone: 'America/Santiago' }) // Todos los días a las 19:00
+  @Cron('00 19 * * *', { timeZone: 'America/Santiago' }) // Todos los días a las 19:00
   async handleCron() {
     this.logger.debug('Ejecutando recordatorio diario...');
 
@@ -40,8 +40,8 @@ export class TasksService {
 
     const payload = {
       notification: {
-        title: '🔔 ¡Es hora de tu recordatorio!',
-        body: 'No olvides completar tu tarea diaria. ¡Tú puedes!',
+        title: '💰 ¡Gestiona tus finanzas! ',
+        body: 'No olvides agregar tus transacciones del día 😉',
       },
     };
 
